@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Delights Bakery & Café</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #4ecdc4;
+            --dark-color: #2d3436;
+            --light-color: #f9f9f9;
+            --text-color: #2d3436;
+            --background-color: #ffffff;
+            --transition: all 0.3s ease;
+        }
+        [data-theme="dark"] {
+            --text-color: #f9f9f9;
+            --background-color: #2d3436;
+            --light-color: #2d3436;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            transition: var(--transition);
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            background-color: var(--background-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .logo img {
+            height: 40px;
+        }
+        .logo span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        .cart-icon {
+            position: relative;
+        }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8rem;
+        }
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('https://images.unsplash.com/photo-1509440159596-0249088772ff');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: var(--transition);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .daily-specials {
+            padding: 5rem 5%;
+            background-color: var(--light-color);
+        }
+        .daily-specials h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+        .specials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .special-card {
+            background-color: var(--background-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        .special-card:hover {
+            transform: translateY(-5px);
+        }
+        .special-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .special-card h3 {
+            padding: 1rem;
+            font-size: 1.2rem;
+        }
+        .special-card p {
+            padding: 0 1rem;
+            color: #666;
+        }
+        .special-card .price {
+            display: block;
+            padding: 1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .menu-section {
+            padding: 5rem 5%;
+            background-color: var(--background-color);
+        }
+        .menu-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+        }
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .category-btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border: none;
+            background: none;
+            color: var(--text-color);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+        .category-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+        .category-btn.active::after {
+            width: 100%;
+        }
+        .category-btn:hover {
+            color: var(--primary-color);
+        }
+        .menu-grid {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .menu-grid.active {
+            display: grid;
+        }
+        .menu-item {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+        .menu-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .item-details {
+            padding: 1.5rem;
+        }
+        .item-details h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+        .item-details p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        .item-details .price {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .add-to-cart {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .add-to-cart:hover {
+            background-color: var(--secondary-color);
+        }
+        .about-section {
+            padding: 5rem 5%;
+            background-color: var(--light-color);
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+        .about-text p {
+            margin-bottom: 2rem;
+            color: #666;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            color: #666;
+        }
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .contact-section {
+            padding: 5rem 5%;
+            background-color: var(--background-color);
+        }
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .info-card {
+            padding: 2rem;
+            background-color: var(--light-color);
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        .info-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .info-card h3 {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        .info-card p {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        .contact-form {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        .form-group {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        .form-group textarea {
+            height: 150px;
+            resize: none;
+        }
+        .form-group label {
+            position: absolute;
+            left: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            transition: var(--transition);
+            pointer-events: none;
+        }
+        .form-group textarea + label {
+            top: 1rem;
+            transform: none;
+        }
+        .form-group input:focus + label,
+        .form-group textarea:focus + label,
+        .form-group input:valid + label,
+        .form-group textarea:valid + label {
+            top: -0.5rem;
+            left: 0.5rem;
+            font-size: 0.8rem;
+            background-color: var(--background-color);
+            padding: 0 0.5rem;
+            color: var(--primary-color);
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .submit-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        .map-container {
+            width: 100%;
+            height: 450px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .reviews {
+            padding: 5rem 5%;
+            text-align: center;
+        }
+        .reviews h2 {
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+        .reviews-slider {
+            display: flex;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+        .review-card {
+            min-width: 300px;
+            padding: 2rem;
+            background-color: var(--light-color);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .stars {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+        .review-card cite {
+            display: block;
+            margin-top: 1rem;
+            color: var(--primary-color);
+        }
+        .newsletter {
+            padding: 5rem 5%;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+        .newsletter h2 {
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+        .newsletter p {
+            margin-bottom: 2rem;
+        }
+        #newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 1rem;
+        }
+        #newsletter-form input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+        }
+        #newsletter-form button {
+            padding: 1rem 2rem;
+            background-color: var(--dark-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        #newsletter-form button:hover {
+            background-color: var(--secondary-color);
+        }
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 5% 1rem;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+        }
+        .modal-content {
+            position: relative;
+            background-color: var(--background-color);
+            margin: 15% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .chat-widget {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+        #chat-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+        #chat-toggle:hover {
+            transform: scale(1.1);
+        }
+        .chat-container {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 300px;
+            height: 400px;
+            background-color: var(--background-color);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+        .chat-header {
+            padding: 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-messages {
+            height: 300px;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        .chat-input {
+            padding: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .chat-input button {
+            padding: 0.5rem 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .specials-container {
+                grid-template-columns: 1fr;
+            }
+            #newsletter-form {
+                flex-direction: column;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            .menu-categories {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .category-btn {
+                width: 100%;
+                text-align: center;
+            }
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        .notification {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            z-index: 1002;
+        }
+        .notification.show {
+            transform: translateX(-50%) translateY(0);
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .cart-item-details {
+            flex: 1;
+        }
+        .cart-item-details h4 {
+            margin-bottom: 0.5rem;
+        }
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        .cart-total {
+            padding: 1rem;
+            text-align: right;
+        }
+        .cart-total h3 {
+            margin-bottom: 1rem;
+        }
+        #checkout-btn {
+            padding: 0.8rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        #checkout-btn:hover {
+            background-color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="Sweet Delights Logo">
+            <span>Sweet Delights</span>
+        </div>
+        <div class="nav-links">
+            <a href="#home" class="active">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#cart" class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+        <div class="theme-toggle">
+            <i class="fas fa-moon"></i>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Sweet Delights</h1>
+            <p>Where every bite tells a story</p>
+            <a href="#menu" class="cta-button">Explore Menu</a>
+        </div>
+    </section>
+
+    <section class="daily-specials">
+        <h2>Today's Specials</h2>
+        <div class="specials-container">
+            <div class="special-card">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="Special 1">
+                <h3>Fresh Baked Croissants</h3>
+                <p>Buttery, flaky perfection</p>
+                <span class="price">₹149</span>
+            </div>
+            <div class="special-card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587" alt="Special 2">
+                <h3>Filter Coffee</h3>
+                <p>Traditional South Indian style</p>
+                <span class="price">₹149</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section">
+        <h2>Our Menu</h2>
+        <div class="menu-categories">
+            <button class="category-btn active" data-category="bakery">Bakery</button>
+            <button class="category-btn" data-category="cafeteria">Cafeteria</button>
+        </div>
+
+        <div class="menu-grid active" id="bakery">
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587" alt="Red Velvet Cake">
+                <div class="item-details">
+                    <h3>Red Velvet Cake</h3>
+                    <p>Classic red velvet with cream cheese frosting</p>
+                    <span class="price">₹899</span>
+                    <button onclick="addItemToCart('Red Velvet Cake', 899, 'https://images.unsplash.com/photo-1578985545062-69928b1d9587')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="Butter Croissant">
+                <div class="item-details">
+                    <h3>Butter Croissant</h3>
+                    <p>Flaky, buttery perfection</p>
+                    <span class="price">₹149</span>
+                    <button onclick="addItemToCart('Butter Croissant', 149, 'https://images.unsplash.com/photo-1555507036-ab1f4038808a')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1607478900766-efe13248b125" alt="Chocolate Chip Cookies">
+                <div class="item-details">
+                    <h3>Chocolate Chip Cookies</h3>
+                    <p>Soft and chewy with premium chocolate chips</p>
+                    <span class="price">₹99</span>
+                    <button onclick="addItemToCart('Chocolate Chip Cookies', 99, 'https://images.unsplash.com/photo-1607478900766-efe13248b125')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87" alt="Sourdough Bread">
+                <div class="item-details">
+                    <h3>Sourdough Bread</h3>
+                    <p>Artisanal sourdough with perfect crust</p>
+                    <span class="price">₹299</span>
+                    <button onclick="addItemToCart('Sourdough Bread', 299, 'https://images.unsplash.com/photo-1551024709-8f23befc6f87')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="Chocolate Cake">
+                <div class="item-details">
+                    <h3>Chocolate Cake</h3>
+                    <p>Rich and moist chocolate layers</p>
+                    <span class="price">₹799</span>
+                    <button onclick="addItemToCart('Chocolate Cake', 799, 'https://images.unsplash.com/photo-1555507036-ab1f4038808a')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1607478900766-efe13248b125" alt="Danish Pastry">
+                <div class="item-details">
+                    <h3>Danish Pastry</h3>
+                    <p>Flaky pastry with fruit filling</p>
+                    <span class="price">₹149</span>
+                    <button onclick="addItemToCart('Danish Pastry', 149, 'https://images.unsplash.com/photo-1607478900766-efe13248b125')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587" alt="Black Forest Cake">
+                <div class="item-details">
+                    <h3>Black Forest Cake</h3>
+                    <p>Classic German chocolate cake with cherries</p>
+                    <span class="price">₹999</span>
+                    <button onclick="addItemToCart('Black Forest Cake', 999, 'https://images.unsplash.com/photo-1578985545062-69928b1d9587')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="Tiramisu">
+                <div class="item-details">
+                    <h3>Tiramisu</h3>
+                    <p>Italian coffee-flavored dessert</p>
+                    <span class="price">₹399</span>
+                    <button onclick="addItemToCart('Tiramisu', 399, 'https://images.unsplash.com/photo-1555507036-ab1f4038808a')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1607478900766-efe13248b125" alt="Whole Wheat Bread">
+                <div class="item-details">
+                    <h3>Whole Wheat Bread</h3>
+                    <p>Healthy and nutritious whole wheat loaf</p>
+                    <span class="price">₹249</span>
+                    <button onclick="addItemToCart('Whole Wheat Bread', 249, 'https://images.unsplash.com/photo-1607478900766-efe13248b125')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87" alt="Oatmeal Cookies">
+                <div class="item-details">
+                    <h3>Oatmeal Cookies</h3>
+                    <p>Healthy oats with raisins</p>
+                    <span class="price">₹129</span>
+                    <button onclick="addItemToCart('Oatmeal Cookies', 129, 'https://images.unsplash.com/photo-1551024709-8f23befc6f87')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="New York Cheesecake">
+                <div class="item-details">
+                    <h3>New York Cheesecake</h3>
+                    <p>Classic creamy cheesecake</p>
+                    <span class="price">₹699</span>
+                    <button onclick="addItemToCart('New York Cheesecake', 699, 'https://images.unsplash.com/photo-1555507036-ab1f4038808a')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1607478900766-efe13248b125" alt="Chocolate Éclair">
+                <div class="item-details">
+                    <h3>Chocolate Éclair</h3>
+                    <p>French pastry with chocolate glaze</p>
+                    <span class="price">₹179</span>
+                    <button onclick="addItemToCart('Chocolate Éclair', 179, 'https://images.unsplash.com/photo-1607478900766-efe13248b125')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587" alt="Fruit Cake">
+                <div class="item-details">
+                    <h3>Fruit Cake</h3>
+                    <p>Rich fruit cake with dried fruits and nuts</p>
+                    <span class="price">₹849</span>
+                    <button onclick="addItemToCart('Fruit Cake', 849, 'https://images.unsplash.com/photo-1578985545062-69928b1d9587')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="Macarons">
+                <div class="item-details">
+                    <h3>Macarons</h3>
+                    <p>French almond meringue cookies</p>
+                    <span class="price">₹299</span>
+                    <button onclick="addItemToCart('Macarons', 299, 'https://images.unsplash.com/photo-1555507036-ab1f4038808a')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1607478900766-efe13248b125" alt="Pav Bhaji Bread">
+                <div class="item-details">
+                    <h3>Pav Bhaji Bread</h3>
+                    <p>Freshly baked Indian dinner rolls</p>
+                    <span class="price">₹199</span>
+                    <button onclick="addItemToCart('Pav Bhaji Bread', 199, 'https://images.unsplash.com/photo-1607478900766-efe13248b125')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87" alt="Muffins">
+                <div class="item-details">
+                    <h3>Blueberry Muffins</h3>
+                    <p>Fresh blueberries in soft muffin</p>
+                    <span class="price">₹149</span>
+                    <button onclick="addItemToCart('Blueberry Muffins', 149, 'https://images.unsplash.com/photo-1551024709-8f23befc6f87')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1607478900766-efe13248b125" alt="Naan Bread">
+                <div class="item-details">
+                    <h3>Butter Naan</h3>
+                    <p>Freshly baked Indian flatbread</p>
+                    <span class="price">₹79</span>
+                    <button onclick="addItemToCart('Butter Naan', 79, 'https://images.unsplash.com/photo-1607478900766-efe13248b125')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="Cupcakes">
+                <div class="item-details">
+                    <h3>Vanilla Cupcakes</h3>
+                    <p>Classic vanilla with buttercream</p>
+                    <span class="price">₹129</span>
+                    <button onclick="addItemToCart('Vanilla Cupcakes', 129, 'https://images.unsplash.com/photo-1555507036-ab1f4038808a')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587" alt="Brownies">
+                <div class="item-details">
+                    <h3>Fudge Brownies</h3>
+                    <p>Rich chocolate fudge brownies</p>
+                    <span class="price">₹199</span>
+                    <button onclick="addItemToCart('Fudge Brownies', 199, 'https://images.unsplash.com/photo-1578985545062-69928b1d9587')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="Donuts">
+                <div class="item-details">
+                    <h3>Glazed Donuts</h3>
+                    <p>Classic glazed ring donuts</p>
+                    <span class="price">₹149</span>
+                    <button onclick="addItemToCart('Glazed Donuts', 149, 'https://images.unsplash.com/photo-1555507036-ab1f4038808a')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-grid" id="cafeteria">
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587" alt="Filter Coffee">
+                <div class="item-details">
+                    <h3>Filter Coffee</h3>
+                    <p>Traditional South Indian filter coffee</p>
+                    <span class="price">₹149</span>
+                    <button onclick="addItemToCart('Filter Coffee', 149, 'https://images.unsplash.com/photo-1578985545062-69928b1d9587')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="Masala Chai">
+                <div class="item-details">
+                    <h3>Masala Chai</h3>
+                    <p>Spiced Indian tea with milk</p>
+                    <span class="price">₹99</span>
+                    <button onclick="addItemToCart('Masala Chai', 99, 'https://images.unsplash.com/photo-1555507036-ab1f4038808a')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1607478900766-efe13248b125" alt="Green Tea">
+                <div class="item-details">
+                    <h3>Green Tea</h3>
+                    <p>Premium Japanese green tea</p>
+                    <span class="price">₹129</span>
+                    <button onclick="addItemToCart('Green Tea', 129, 'https://images.unsplash.com/photo-1607478900766-efe13248b125')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87" alt="Chocolate Milkshake">
+                <div class="item-details">
+                    <h3>Chocolate Milkshake</h3>
+                    <p>Rich and creamy chocolate delight</p>
+                    <span class="price">₹199</span>
+                    <button onclick="addItemToCart('Chocolate Milkshake', 199, 'https://images.unsplash.com/photo-1551024709-8f23befc6f87')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="Berry Smoothie">
+                <div class="item-details">
+                    <h3>Berry Smoothie</h3>
+                    <p>Mixed berries with yogurt</p>
+                    <span class="price">₹249</span>
+                    <button onclick="addItemToCart('Berry Smoothie', 249, 'https://images.unsplash.com/photo-1555507036-ab1f4038808a')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1607478900766-efe13248b125" alt="Cappuccino">
+                <div class="item-details">
+                    <h3>Cappuccino</h3>
+                    <p>Classic Italian coffee drink</p>
+                    <span class="price">₹179</span>
+                    <button onclick="addItemToCart('Cappuccino', 179, 'https://images.unsplash.com/photo-1607478900766-efe13248b125')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87" alt="Ginger Tea">
+                <div class="item-details">
+                    <h3>Ginger Tea</h3>
+                    <p>Fresh ginger with honey</p>
+                    <span class="price">₹119</span>
+                    <button onclick="addItemToCart('Ginger Tea', 119, 'https://images.unsplash.com/photo-1551024709-8f23befc6f87')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="Vanilla Milkshake">
+                <div class="item-details">
+                    <h3>Vanilla Milkshake</h3>
+                    <p>Classic vanilla with whipped cream</p>
+                    <span class="price">₹179</span>
+                    <button onclick="addItemToCart('Vanilla Milkshake', 179, 'https://images.unsplash.com/photo-1555507036-ab1f4038808a')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1607478900766-efe13248b125" alt="Mango Smoothie">
+                <div class="item-details">
+                    <h3>Mango Smoothie</h3>
+                    <p>Fresh mango with yogurt</p>
+                    <span class="price">₹229</span>
+                    <button onclick="addItemToCart('Mango Smoothie', 229, 'https://images.unsplash.com/photo-1607478900766-efe13248b125')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87" alt="Americano">
+                <div class="item-details">
+                    <h3>Americano</h3>
+                    <p>Espresso with hot water</p>
+                    <span class="price">₹159</span>
+                    <button onclick="addItemToCart('Americano', 159, 'https://images.unsplash.com/photo-1551024709-8f23befc6f87')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="Lemon Tea">
+                <div class="item-details">
+                    <h3>Lemon Tea</h3>
+                    <p>Fresh lemon with honey</p>
+                    <span class="price">₹109</span>
+                    <button onclick="addItemToCart('Lemon Tea', 109, 'https://images.unsplash.com/photo-1555507036-ab1f4038808a')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1607478900766-efe13248b125" alt="Strawberry Milkshake">
+                <div class="item-details">
+                    <h3>Strawberry Milkshake</h3>
+                    <p>Fresh strawberries with cream</p>
+                    <span class="price">₹219</span>
+                    <button onclick="addItemToCart('Strawberry Milkshake', 219, 'https://images.unsplash.com/photo-1607478900766-efe13248b125')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87" alt="Cold Coffee">
+                <div class="item-details">
+                    <h3>Cold Coffee</h3>
+                    <p>Iced coffee with whipped cream</p>
+                    <span class="price">₹189</span>
+                    <button onclick="addItemToCart('Cold Coffee', 189, 'https://images.unsplash.com/photo-1551024709-8f23befc6f87')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1607478900766-efe13248b125" alt="Tulsi Tea">
+                <div class="item-details">
+                    <h3>Tulsi Tea</h3>
+                    <p>Holy basil tea with honey</p>
+                    <span class="price">₹119</span>
+                    <button onclick="addItemToCart('Tulsi Tea', 119, 'https://images.unsplash.com/photo-1607478900766-efe13248b125')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="Falooda">
+                <div class="item-details">
+                    <h3>Rose Falooda</h3>
+                    <p>Traditional Indian dessert drink</p>
+                    <span class="price">₹249</span>
+                    <button onclick="addItemToCart('Rose Falooda', 249, 'https://images.unsplash.com/photo-1555507036-ab1f4038808a')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587" alt="Lassi">
+                <div class="item-details">
+                    <h3>Sweet Lassi</h3>
+                    <p>Traditional yogurt drink</p>
+                    <span class="price">₹149</span>
+                    <button onclick="addItemToCart('Sweet Lassi', 149, 'https://images.unsplash.com/photo-1578985545062-69928b1d9587')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="Ice Tea">
+                <div class="item-details">
+                    <h3>Peach Ice Tea</h3>
+                    <p>Refreshing peach flavored tea</p>
+                    <span class="price">₹159</span>
+                    <button onclick="addItemToCart('Peach Ice Tea', 159, 'https://images.unsplash.com/photo-1555507036-ab1f4038808a')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1607478900766-efe13248b125" alt="Hot Chocolate">
+                <div class="item-details">
+                    <h3>Hot Chocolate</h3>
+                    <p>Rich and creamy chocolate drink</p>
+                    <span class="price">₹189</span>
+                    <button onclick="addItemToCart('Hot Chocolate', 189, 'https://images.unsplash.com/photo-1607478900766-efe13248b125')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="Thandai">
+                <div class="item-details">
+                    <h3>Thandai</h3>
+                    <p>Traditional Indian spiced milk drink</p>
+                    <span class="price">₹199</span>
+                    <button onclick="addItemToCart('Thandai', 199, 'https://images.unsplash.com/photo-1555507036-ab1f4038808a')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587" alt="Coffee Frappe">
+                <div class="item-details">
+                    <h3>Coffee Frappe</h3>
+                    <p>Blended coffee with ice cream</p>
+                    <span class="price">₹229</span>
+                    <button onclick="addItemToCart('Coffee Frappe', 229, 'https://images.unsplash.com/photo-1578985545062-69928b1d9587')" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <h2>About Us</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Our Story</h3>
+                <p>Founded in 2010, Sweet Delights has been serving the community with freshly baked goods and premium coffee. Our passion for quality ingredients and exceptional service has made us a beloved destination for food lovers.</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">14</span>
+                        <span class="stat-label">Years of Excellence</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">Happy Customers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Menu Items</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff" alt="Our Bakery">
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="info-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Location</h3>
+                    <p>123 MG Road</p>
+                    <p>Bangalore, Karnataka 560001</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone</h3>
+                    <p>+91 98765 43210</p>
+                    <p>Mon-Sun: 7:00 AM - 9:00 PM</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>info@sweetdelights.in</p>
+                    <p>orders@sweetdelights.in</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" required>
+                        <label for="name">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" required>
+                        <label for="email">Your Email</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" required>
+                        <label for="phone">Your Phone Number</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" required>
+                        <label for="subject">Subject</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" required></textarea>
+                        <label for="message">Your Message</label>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.004269015576!2d77.591199!3d12.939094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15986765d7d9%3A0x357ff1cbac4a09bb!2sBangalore%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1641234567890!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <section class="reviews">
+        <h2>What Our Customers Say</h2>
+        <div class="reviews-slider">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"Best bakery in Bangalore! Their pastries and cakes are simply amazing. The quality is consistently excellent."</p>
+                <cite>- Priya Sharma</cite>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"Their filter coffee is perfect, and the service is exceptional! Love their South Indian snacks too."</p>
+                <cite>- Rajesh Kumar</cite>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"A cozy atmosphere with delicious treats. Their special occasion cakes are a hit at all our family functions!"</p>
+                <cite>- Anjali Reddy</cite>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"The best place for fresh bread and croissants. Their prices are reasonable for the quality they offer."</p>
+                <cite>- Amit Patel</cite>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"Their masala chai and cookies are perfect for evening snacks. Great place to hang out with friends!"</p>
+                <cite>- Neha Gupta</cite>
+            </div>
+        </div>
+        <div class="slider-dots"></div>
+    </section>
+
+    <section class="newsletter">
+        <h2>Subscribe to Our Newsletter</h2>
+        <p>Get updates on special offers and new items!</p>
+        <form id="newsletter-form">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>123 MG Road</p>
+                <p>Bangalore, Karnataka 560001</p>
+                <p>Phone: +91 98765 43210</p>
+                <p>Email: info@sweetdelights.in</p>
+            </div>
+            <div class="footer-section">
+                <h3>Opening Hours</h3>
+                <p>Monday - Friday: 7:00 AM - 8:00 PM</p>
+                <p>Saturday: 8:00 AM - 9:00 PM</p>
+                <p>Sunday: 8:00 AM - 7:00 PM</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://facebook.com/sweetdelightsbangalore"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com/sweetdelightsbangalore"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/sweetdelightsblr"><i class="fab fa-twitter"></i></a>
+                    <a href="https://zomato.com/sweetdelightsbangalore"><i class="fas fa-utensils"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Sweet Delights Bakery & Café, Bangalore. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <h3>Total: <span id="cart-total-amount">₹0.00</span></h3>
+                <button id="checkout-btn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-widget">
+        <button id="chat-toggle">
+            <i class="fas fa-comments"></i>
+        </button>
+        <div class="chat-container">
+            <div class="chat-header">
+                <h3>Live Chat</h3>
+                <span class="close-chat">&times;</span>
+            </div>
+            <div class="chat-messages"></div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type your message...">
+                <button><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const navbar = document.querySelector('.navbar');
+        const themeToggle = document.querySelector('.theme-toggle');
+        const cartIcon = document.querySelector('.cart-icon');
+        const cartModal = document.getElementById('cart-modal');
+        const closeModal = document.querySelector('.close');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotalAmount = document.getElementById('cart-total-amount');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatContainer = document.querySelector('.chat-container');
+        const closeChat = document.querySelector('.close-chat');
+        const newsletterForm = document.getElementById('newsletter-form');
+        const reviewsSlider = document.querySelector('.reviews-slider');
+        const sliderDots = document.querySelector('.slider-dots');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const menuGrids = document.querySelectorAll('.menu-grid');
+        const contactForm = document.getElementById('contact-form');
+
+        let cart = [];
+        let isDarkMode = false;
+
+        const reviews = [
+            {
+                stars: 5,
+                text: "Best bakery in Bangalore! Their pastries and cakes are simply amazing. The quality is consistently excellent.",
+                author: "Priya Sharma"
+            },
+            {
+                stars: 5,
+                text: "Their filter coffee is perfect, and the service is exceptional! Love their South Indian snacks too.",
+                author: "Rajesh Kumar"
+            },
+            {
+                stars: 5,
+                text: "A cozy atmosphere with delicious treats. Their special occasion cakes are a hit at all our family functions!",
+                author: "Anjali Reddy"
+            },
+            {
+                stars: 5,
+                text: "The best place for fresh bread and croissants. Their prices are reasonable for the quality they offer.",
+                author: "Amit Patel"
+            },
+            {
+                stars: 5,
+                text: "Their masala chai and cookies are perfect for evening snacks. Great place to hang out with friends!",
+                author: "Neha Gupta"
+            }
+        ];
+
+        function initReviewsSlider() {
+            reviews.forEach((review, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('slider-dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => scrollToReview(index));
+                sliderDots.appendChild(dot);
+            });
+        }
+
+        function scrollToReview(index) {
+            const reviewWidth = reviewsSlider.children[0].offsetWidth + 32;
+            reviewsSlider.scrollTo({
+                left: reviewWidth * index,
+                behavior: 'smooth'
+            });
+            updateSliderDots(index);
+        }
+
+        function updateSliderDots(activeIndex) {
+            const dots = sliderDots.children;
+            Array.from(dots).forEach((dot, index) => {
+                dot.classList.toggle('active', index === activeIndex);
+            });
+        }
+
+        function addToCart(item) {
+            cart.push(item);
+            updateCartCount();
+            showNotification('Item added to cart!');
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartCount();
+            updateCartDisplay();
+            showNotification('Item removed from cart!');
+        }
+
+        function updateCartCount() {
+            const cartCount = document.querySelector('.cart-count');
+            cartCount.textContent = cart.length;
+        }
+
+        function updateCartDisplay() {
+            cartItems.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <h4>${item.name}</h4>
+                        <p>₹${item.price.toFixed(2)}</p>
+                    </div>
+                    <button onclick="removeFromCart(${index})" class="remove-item">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                cartItems.appendChild(cartItem);
+                total += item.price;
+            });
+
+            cartTotalAmount.textContent = `₹${total.toFixed(2)}`;
+        }
+
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+            themeToggle.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        }
+
+        function toggleChat() {
+            chatContainer.style.display = chatContainer.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function handleNewsletterSubmit(e) {
+            e.preventDefault();
+            const email = e.target.querySelector('input[type="email"]').value;
+            showNotification('Thank you for subscribing!');
+            e.target.reset();
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.classList.add('notification');
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            showNotification('Message sent successfully!');
+            contactForm.reset();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                isDarkMode = true;
+                document.body.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+
+            initReviewsSlider();
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            cartIcon.addEventListener('click', () => {
+                cartModal.style.display = 'block';
+                updateCartDisplay();
+            });
+
+            closeModal.addEventListener('click', () => {
+                cartModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === cartModal) {
+                    cartModal.style.display = 'none';
+                }
+            });
+
+            chatToggle.addEventListener('click', toggleChat);
+            closeChat.addEventListener('click', toggleChat);
+
+            newsletterForm.addEventListener('submit', handleNewsletterSubmit);
+
+            themeToggle.addEventListener('click', toggleTheme);
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    menuGrids.forEach(g => g.classList.remove('active'));
+                    
+                    btn.classList.add('active');
+                    const category = btn.getAttribute('data-category');
+                    document.getElementById(category).classList.add('active');
+                });
+            });
+
+            contactForm.addEventListener('submit', handleContactSubmit);
+        });
+
+        function addItemToCart(name, price, image) {
+            addToCart({
+                name,
+                price,
+                image
+            });
+        }
+
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty!');
+                return;
+            }
+            showNotification('Proceeding to checkout...');
+        }
+    </script>
+</body>
+</html> 
