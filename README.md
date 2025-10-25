@@ -29,5 +29,5 @@ This project is not yet deployed. You can clone the repository and run it locall
 
 ## 📬 Contact
 
-For questions or feedback, feel free to reach out via the contact form or connect on [LinkedIn](www.linkedin.com/in/preethi-b-076062376).
+For questions or feedback, feel free to reach out via the contact form or connect on [LinkedIn](https://www.linkedin.com/in/preethi-b-076062376).
 
