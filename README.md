@@ -23,3 +23,11 @@ This project is not yet deployed. You can clone the repository and run it locall
 ## 📂 How to Use
 
 1. Clone the repository:
+   git clone https://github.com/preethi-b268/bakery-management.git
+2. Open `index.html` in your browser
+3. Submit the contact form to test data saving (requires Google Apps Script setup)
+
+## 📬 Contact
+
+For questions or feedback, feel free to reach out via the contact form or connect on [LinkedIn](www.linkedin.com/in/preethi-b-076062376).
+
